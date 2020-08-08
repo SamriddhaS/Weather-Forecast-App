@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="250dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/margin8dp"
+    app:cardBackgroundColor="@color/color1BackgroundElevation2dp"
+    app:cardCornerRadius="12dp"
+    android:elevation="8dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/padding18dp">
+
+        <TextView
+            android:id="@+id/tvFutureItemDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/TvNormal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.100000024"
+            tools:text="Rain Possible" />
+
+        <TextView
+            android:id="@+id/tvFutureItemTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:theme="@style/TvHeadline"
+            android:textSize="@dimen/textSize28"
+            android:textColor="@color/color1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="30 C" />
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvFutureItemTemp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintVertical_bias="0.9"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_time"
+                android:theme="@style/TvSmall"
+                android:textColor="@color/textColorWhite3"
+                android:layout_margin="@dimen/margin3dp"/>
+
+            <TextView
+                android:id="@+id/tvFutureItemTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/TvNormal"
+                android:layout_margin="@dimen/margin3dp"
+                tools:text="3.30" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_date"
+                android:theme="@style/TvSmall"
+                android:textColor="@color/textColorWhite3"
+                android:layout_margin="@dimen/margin3dp"
+                />
+
+            <TextView
+                android:id="@+id/tvFutureItemDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/TvNormal"
+                tools:text="12.2.2020"
+                android:layout_margin="@dimen/margin3dp"
+                />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

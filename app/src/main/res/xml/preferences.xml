@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="Weather Location Settings"
+        >
+        <SwitchPreference
+            android:key="USE_DEVICE_LOCATION"
+            android:title="Use Device Location"
+            android:summary="See Weather Of Your Current Location"
+            android:defaultValue="true"
+            android:disableDependentsState="true"
+            app:disableDependentsState="true"
+            />
+
+        <EditTextPreference
+            android:key="CHANGE_LOCATION"
+            android:title="Use Custom Location"
+            android:defaultValue="Kolkata"
+            android:summary="Choose A Location That You Want to See"
+            android:dependency="USE_DEVICE_LOCATION"
+            />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Change Unit System">
+
+        <ListPreference
+            android:key="UNIT_SYSTEM"
+            android:title="Unit System"
+            android:summary="%s"
+            app:defaultValue="m"
+            android:entries="@array/unitSystemEntries"
+            android:entryValues="@array/unitSystemValues"
+            />
+
+    </PreferenceCategory>
+</PreferenceScreen>

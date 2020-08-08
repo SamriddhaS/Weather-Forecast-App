@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="unitSystemValues">
+
+        <item>m</item>
+        <item>f</item>
+
+    </string-array>
+
+    <string-array name="unitSystemEntries">
+
+        <item>Metric</item>
+        <item>Fahrenheit</item>
+
+    </string-array>
+</resources>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.currentWeather.CurrentWeatherFragment">
+
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:visibility="invisible"
+        app:constraint_referenced_ids="tvCurrentWeather,tvCurrentDate,imageView,tvCurrentPlace,recycler_view"
+        tools:visibility="visible" />
+
+    <ProgressBar
+        android:id="@+id/futureProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvCurrentWeather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txt_weather_forecast"
+        app:layout_constraintBottom_toTopOf="@+id/tvCurrentDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07999998"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:theme="@style/TvHeadline1" />
+
+    <TextView
+        android:id="@+id/tvCurrentDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:letterSpacing="0.2"
+        android:text="@string/txt_five_day"
+        android:theme="@style/TvNormal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvCurrentWeather"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/tvCurrentWeather"
+        app:layout_constraintTop_toBottomOf="@+id/tvCurrentWeather" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:src="@drawable/ic_location"
+        app:layout_constraintEnd_toEndOf="@+id/tvCurrentDate"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/tvCurrentDate"
+        app:layout_constraintTop_toBottomOf="@+id/tvCurrentDate" />
+
+    <TextView
+        android:id="@+id/tvCurrentPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin3dp"
+        android:theme="@style/TvNormal"
+        app:layout_constraintEnd_toEndOf="@+id/tvCurrentDate"
+        app:layout_constraintStart_toStartOf="@+id/tvCurrentDate"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:text="Kolkata,West Bengal,India" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCurrentPlace"
+        tools:listitem="@layout/future_weather_item" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
