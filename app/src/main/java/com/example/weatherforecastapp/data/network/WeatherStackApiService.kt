@@ -9,8 +9,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-const val WEATHER_STACK_API_KEY = "9414e8821c0135afc3b7bd58d710a40c"
-
 const val WEATHER_STACK_BASE_URL = "http://api.weatherstack.com/"
 
 //http://api.weatherstack.com/current?access_key=9414e8821c0135afc3b7bd58d710a40c&query=Kolkata&units=f
@@ -33,7 +31,7 @@ interface WeatherStackApiService {
                     .url()
                     .newBuilder()
                     .addQueryParameter("access_key",
-                        WEATHER_STACK_API_KEY
+                        WEATHER_STACK_API_KEY /*use your own api key*/
                     )
                     .build()
 

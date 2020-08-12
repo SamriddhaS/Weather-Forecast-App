@@ -9,8 +9,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-const val OPEN_WEATHER_API_KEY = "a4680def7e63766deb0ce3db92a76191"
-
 const val OPEN_WEATHER_BASE_URL = "https://api.openweathermap.org/data/2.5/"
 
 //https://api.openweathermap.org/data/2.5/forecast?lat=22.5697&lon=88.3697&appid=a4680def7e63766deb0ce3db92a76191&units=metric
@@ -39,7 +37,7 @@ interface OpenWeatherMapApiService {
                     .url()
                     .newBuilder()
                     .addQueryParameter("appid",
-                        OPEN_WEATHER_API_KEY
+                        OPEN_WEATHER_API_KEY /*use your own api key*/
                     )
                     .build()
 
