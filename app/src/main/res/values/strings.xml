@@ -1,6 +1,6 @@
 <resources>
     <!--App name-->
-    <string name="app_name">Weather Forecast App</string>
+    <string name="app_name">WeatherInfo</string>
 
     <!--Margins-->
     <dimen name="margin3dp">3dp</dimen>

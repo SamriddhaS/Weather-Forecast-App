@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/currentWeatherFragment"
-        android:name="com.example.weatherforecastapp.ui.currentWeather.CurrentWeatherFragment"
+        android:name="com.samriddha.weatherforecastapp.ui.currentWeather.CurrentWeatherFragment"
         android:label="current_weather_fragment"
         tools:layout="@layout/current_weather_fragment" />
     <fragment
         android:id="@+id/weekWeatherFragment"
-        android:name="com.example.weatherforecastapp.ui.futureWeather.FutureWeatherFragment"
+        android:name="com.samriddha.weatherforecastapp.ui.futureWeather.FutureWeatherFragment"
         android:label="week_weather_fragment"
         tools:layout="@layout/future_weather_fragment" >
         <action
@@ -21,11 +21,11 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.weatherforecastapp.ui.SettingsFragment"
+        android:name="com.samriddha.weatherforecastapp.ui.SettingsFragment"
         android:label="SettingsFragment" />
     <fragment
         android:id="@+id/weekDetailsFragment"
-        android:name="com.example.weatherforecastapp.ui.futureWeather.detailsFutureWeather.FutureDetailsFragment"
+        android:name="com.samriddha.weatherforecastapp.ui.futureWeather.detailsFutureWeather.FutureDetailsFragment"
         android:label="week_details_fragment"
         tools:layout="@layout/future_details_fragment" >
     </fragment>
