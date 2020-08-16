@@ -1,7 +1,7 @@
 package com.samriddha.weatherforecastapp.data.providers
 
 import android.content.Context
-import com.samriddha.weatherforecastapp.internal.UnitSystems
+import com.samriddha.weatherforecastapp.utils.UnitSystems
 import com.samriddha.weatherforecastapp.data.local.entity.Request
 
 const val UNIT_SYSTEM = "UNIT_SYSTEM"

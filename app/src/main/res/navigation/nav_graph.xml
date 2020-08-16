@@ -17,11 +17,16 @@
         tools:layout="@layout/future_weather_fragment" >
         <action
             android:id="@+id/action_weekWeatherFragment_to_weekDetailsFragment"
-            app:destination="@id/weekDetailsFragment" />
+            app:destination="@id/weekDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.samriddha.weatherforecastapp.ui.SettingsFragment"
+        android:name="com.samriddha.weatherforecastapp.ui.settings.SettingsFragment"
         android:label="SettingsFragment" />
     <fragment
         android:id="@+id/weekDetailsFragment"

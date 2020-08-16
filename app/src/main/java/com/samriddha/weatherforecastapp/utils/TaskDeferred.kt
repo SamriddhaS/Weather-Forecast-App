@@ -1,4 +1,4 @@
-package com.samriddha.weatherforecastapp.internal
+package com.samriddha.weatherforecastapp.utils
 
 import com.google.android.gms.tasks.Task
 import kotlinx.coroutines.CompletableDeferred

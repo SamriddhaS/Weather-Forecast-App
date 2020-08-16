@@ -1,4 +1,4 @@
-package com.samriddha.weatherforecastapp.ui
+package com.samriddha.weatherforecastapp.ui.settings
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

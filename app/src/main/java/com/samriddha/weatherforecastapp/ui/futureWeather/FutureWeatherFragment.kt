@@ -5,17 +5,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.samriddha.weatherforecastapp.R
 import com.samriddha.weatherforecastapp.ui.futureWeather.detailsFutureWeather.EPOCH_DATE_PASS_KEY
+import com.samriddha.weatherforecastapp.utils.ApiException
+import com.samriddha.weatherforecastapp.utils.NoInternetException
+import com.samriddha.weatherforecastapp.utils.toast
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.current_weather_fragment.*
 import kotlinx.android.synthetic.main.future_weather_fragment.*
 import kotlinx.android.synthetic.main.future_weather_fragment.groupLoading
+import kotlinx.android.synthetic.main.future_weather_fragment.tvCurrentPlace
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -28,6 +36,7 @@ class FutureWeatherFragment : Fragment() ,KodeinAware{
     private val viewModelFactory by instance<FutureWeatherViewModelFactory>()
 
     private lateinit var viewModel: FutureWeatherViewModel
+    private lateinit var snackBar:Snackbar
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +56,23 @@ class FutureWeatherFragment : Fragment() ,KodeinAware{
     private fun bindUi() {
 
         viewLifecycleOwner.lifecycleScope.launch {
+
+            val job = async {
+
+                try {
+                    viewModel.updateWeatherData()
+                }catch (e:NoInternetException){
+                    if(futureProgressBar.visibility==View.VISIBLE) futureProgressBar.visibility = View.INVISIBLE
+                    initSnackBar("Internet Not Available!!",true)
+                    snackBar.show()
+                }catch (e:ApiException){
+                    if(futureProgressBar.visibility==View.VISIBLE) futureProgressBar.visibility = View.INVISIBLE
+                    initSnackBar("Location Not Available,Try Different Location",false)
+                    snackBar.show()                }
+            }
+
+            job.await()
+
 
             val futureWeatherData = viewModel.futureWeather.await()
             val locationData = viewModel.locationWeather.await()
@@ -69,6 +95,20 @@ class FutureWeatherFragment : Fragment() ,KodeinAware{
 
 
         }
+    }
+    private fun initSnackBar(message:String,setAction:Boolean) {
+
+        if (setAction){
+            snackBar = Snackbar.make(snackLayoutFuture,message, Snackbar.LENGTH_INDEFINITE)
+            snackBar.setAction("Retry", View.OnClickListener {
+                snackBar.dismiss()
+                futureProgressBar.visibility = View.VISIBLE
+                bindUi()
+            })
+        }else{
+            snackBar = Snackbar.make(snackLayoutFuture,message, Snackbar.LENGTH_LONG)
+        }
+
     }
 
     private fun updateLocation(location: String,region:String,country: String) {

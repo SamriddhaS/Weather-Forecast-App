@@ -3,9 +3,10 @@ package com.samriddha.weatherforecastapp.data.network
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.samriddha.weatherforecastapp.internal.NoInternetException
+import com.samriddha.weatherforecastapp.utils.NoInternetException
 import com.samriddha.weatherforecastapp.pojo.CurrentWeatherResponse
 import com.samriddha.weatherforecastapp.pojo.FutureWeatherResponse
+import com.samriddha.weatherforecastapp.utils.ApiException
 
 class WeatherNetworkDataSourceImpl(
     private val currentWeatherStackApiService: WeatherStackApiService,
@@ -19,20 +20,20 @@ class WeatherNetworkDataSourceImpl(
 
     override suspend fun fetchCurrentWeather(location: String, unitSystem: String) {
 
-        try {
             val fetchCurrentWeather = currentWeatherStackApiService.getCurrentWeather(location, unitSystem)
 
             if (fetchCurrentWeather.body()?.current!=null) {
                 downCurrentWeather.postValue(fetchCurrentWeather.body())
             } else {
+
                 Log.e(
                     "Connection",
                     "Location Not Available.${fetchCurrentWeather.message()}.${fetchCurrentWeather.errorBody()}"
                 )
+                throw ApiException()
+
             }
-        } catch (e: NoInternetException) {
-            Log.e("Connection", "Internet Not Available", e)
-        }
+
     }
 
     //Future Weather
@@ -43,38 +44,28 @@ class WeatherNetworkDataSourceImpl(
 
     override suspend fun fetchFutureWeatherByLatLon(lat: String, long: String, unitSystem: String) {
 
-        try {
             val fetchedFutureWeather =
                 futureWeatherApiService.getForecastWeatherByLatLon(lat, long, unitSystem)
             if (fetchedFutureWeather.raw().isSuccessful)
                 downFutureWeather.postValue(fetchedFutureWeather.body())
-            else
-                Log.e(
-                    "Connection",
-                    "Location Not Available.${fetchedFutureWeather.message()}.${fetchedFutureWeather.errorBody()}"
-                )
+            else{
+                Log.e("Connection","Location Not Available.${fetchedFutureWeather.message()}.${fetchedFutureWeather.errorBody()}")
+                throw ApiException()
+            }
 
-        } catch (e: NoInternetException) {
-            Log.e("Connection", "Internet Not Available", e)
-        }
     }
 
     override suspend fun fetchFutureWeatherByName(locationName: String, unitSystem: String) {
 
-        try {
             val fetchedFutureWeather =
                 futureWeatherApiService.getForecastWeatherByName(locationName, unitSystem)
             if (fetchedFutureWeather.isSuccessful)
                 downFutureWeather.postValue(fetchedFutureWeather.body())
-            else
-                Log.e(
-                    "Connection",
-                    "Location Not Available.${fetchedFutureWeather.message()}.${fetchedFutureWeather.errorBody()}"
-                )
+            else{
+                Log.e("Connection","Location Not Available.${fetchedFutureWeather.message()}.${fetchedFutureWeather.errorBody()}")
+                throw ApiException()
+            }
 
-        } catch (e: NoInternetException) {
-            Log.e("Connection", "Internet Not Available", e)
-        }
     }
 
 

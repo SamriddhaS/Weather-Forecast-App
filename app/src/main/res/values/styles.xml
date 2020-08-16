@@ -17,6 +17,11 @@
         <item name="android:textColorSecondary">@color/textColorWhite2</item>
     </style>
 
+    <!--Splash Screen Theme-->
+    <style name="AppTheme.SplashTheme">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+    </style>
+
     <style name="TvHeadline" >
 
         <item name="android:textColor">@color/color1</item>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.futureWeather.detailsFutureWeather.FutureDetailsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,9 +15,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
+            android:visibility="invisible"
             app:constraint_referenced_ids="tvDetailsWeather,tvDetailDate,imageView,
             tvDetailsPlace,tvDetailsTemp,tvDetailsDescription,cardView,tvDetailsTime"
-            android:visibility="invisible" />
+            tools:visibility="visible" />
 
         <ProgressBar
             android:id="@+id/progressBar2"
@@ -25,6 +26,17 @@
             android:layout_height="wrap_content"
             android:indeterminate="true"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="29dp"
+            android:background="@color/backgroundElevation4dp"
+            android:theme="@style/ToolbarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +49,7 @@
             app:layout_constraintBottom_toTopOf="@+id/tvDetailDate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:layout_constraintVertical_bias="0.050000012"
             app:layout_constraintVertical_chainStyle="packed"
             app:theme="@style/TvHeadline1" />
@@ -121,8 +133,8 @@
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="82dp"
             android:layout_marginStart="@dimen/margin18dp"
+            android:layout_marginTop="82dp"
             android:layout_marginEnd="@dimen/margin18dp"
             app:cardBackgroundColor="@color/backgroundElevation2dp"
             app:cardCornerRadius="12dp"
@@ -437,7 +449,6 @@
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 </ScrollView>

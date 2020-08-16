@@ -12,7 +12,7 @@ import com.samriddha.weatherforecastapp.R
 import com.samriddha.weatherforecastapp.data.providers.EpochTimeProvider
 import com.samriddha.weatherforecastapp.data.providers.UnitProvider
 import com.samriddha.weatherforecastapp.data.repository.ForecastRepository
-import com.samriddha.weatherforecastapp.internal.EpochDateNotFoundException
+import com.samriddha.weatherforecastapp.utils.EpochDateNotFoundException
 import kotlinx.android.synthetic.main.future_details_fragment.tvDetailDate
 import kotlinx.android.synthetic.main.future_details_fragment.tvDetailsDescription
 import kotlinx.android.synthetic.main.future_details_fragment.tvDetailsHumidity
@@ -52,6 +52,13 @@ class FutureDetailsFragment : Fragment(),KodeinAware {
 
         val viewModelFactoryInstanceFactory = FutureDetailViewModelFactory(date,repository,unitProvider)
         viewModel = ViewModelProvider(this,viewModelFactoryInstanceFactory).get(FutureDetailsViewModel::class.java)
+
+
+        //setting back button with toolbar
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
+        toolbar.setNavigationOnClickListener {
+            activity?.onBackPressed()
+        }
 
         bindUi()
 

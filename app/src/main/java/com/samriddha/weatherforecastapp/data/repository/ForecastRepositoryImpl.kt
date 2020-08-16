@@ -43,19 +43,21 @@ class ForecastRepositoryImpl(
         }
     }
 
-    override suspend fun getCurrentWeather(currentUnit: String): LiveData<CurrentWeather> {
+    override suspend fun getCurrentWeather(): LiveData<CurrentWeather> {
 
         return withContext(Dispatchers.IO) {
-            initWeatherData(currentUnit)
             currentWeatherDao.getCurrentWeatherResult()
         }
     }
 
-    override suspend fun getFutureWeatherHourlyList(todayDate:Long,currentUnit: String): LiveData<out List<SimpleFutureWeatherData>> {
+    override suspend fun getFutureWeatherHourlyList(todayDate:Long): LiveData<out List<SimpleFutureWeatherData>> {
         return withContext(Dispatchers.IO){
-            initWeatherData(currentUnit)
             return@withContext futureWeatherDao.getSimpleFutureWeatherList(todayDate)
         }
+    }
+
+    override suspend fun updateWeatherData(currentUnit: String) {
+        initWeatherData(currentUnit)
     }
 
     override suspend fun getDetailFutureWeather(date: Long): LiveData<out FutureDetailWeatherData> {
@@ -78,7 +80,7 @@ class ForecastRepositoryImpl(
 
         val lastWeatherLocation = locationCurrentWeatherDao.getLocationNonLive()
 
-        //For updating weather database if app is loaded for first time, location is changed, unit is changed.
+        //For updating weather database if app is loaded for first time or location is changed or unit is changed.
         if (lastWeatherLocation==null
             || locationProvider.hasLocationChanged(lastWeatherLocation)
             || unitProvider.hasUnitChanged(unit)){
@@ -130,11 +132,6 @@ class ForecastRepositoryImpl(
 
     }
 
-    private fun isFetchFutureNeeded(lastFetchTime: ZonedDateTime): Boolean {
-        val fourHour = ZonedDateTime.now().minusMinutes(5)
-        return lastFetchTime.isBefore(fourHour)
-    }
-
     private fun persistCurrentWeather(fetchedData: CurrentWeatherResponse) {
 
         GlobalScope.launch(Dispatchers.IO) {
@@ -143,7 +140,9 @@ class ForecastRepositoryImpl(
 
             val location = fetchedData.location
             location.timeOfFetching = EpochTimeProvider.getCurrentEpoch() // Recording time of fetching before saving to local db.
+
             locationCurrentWeatherDao.insert(location)
+
         }
 
     }

@@ -8,14 +8,6 @@
     android:orientation="vertical"
     >
 
-<!--    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/toolbar"
-        android:theme="@style/ToolbarTheme"
-        android:background="@color/backgroundElevation4dp"
-        />-->
-
     <fragment
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -31,9 +23,11 @@
         android:id="@+id/bottom_nav"
         app:menu="@menu/bottom_nav_menu"
         android:background="@color/backgroundElevation4dp"
-        app:itemIconTint="@color/color1"
-        app:itemTextColor="@color/color1"
+        app:itemIconTint="@color/btm_nav_item_foreground"
+        app:itemTextColor="@color/btm_nav_item_foreground"
+
         />
+
 
 
 </LinearLayout>

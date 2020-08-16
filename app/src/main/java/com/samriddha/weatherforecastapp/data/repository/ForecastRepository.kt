@@ -8,11 +8,13 @@ import com.samriddha.weatherforecastapp.data.local.entity.WeatherLocation
 
 interface ForecastRepository {
 
-    suspend fun getCurrentWeather(currentUnit:String):LiveData<CurrentWeather>
+    suspend fun getCurrentWeather():LiveData<CurrentWeather>
+
+    suspend fun updateWeatherData(currentUnit:String)
 
     suspend fun getLocationCurrentWeather():LiveData<WeatherLocation>
 
-    suspend fun getFutureWeatherHourlyList(todayDate:Long,currentUnit: String):LiveData<out List<SimpleFutureWeatherData>>
+    suspend fun getFutureWeatherHourlyList(todayDate:Long):LiveData<out List<SimpleFutureWeatherData>>
 
     suspend fun getDetailFutureWeather(date:Long):LiveData<out FutureDetailWeatherData>
 

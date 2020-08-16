@@ -5,7 +5,9 @@ import com.samriddha.weatherforecastapp.data.providers.UnitProvider
 import com.samriddha.weatherforecastapp.data.repository.ForecastRepository
 import com.samriddha.weatherforecastapp.ui.WeatherViewModel
 import com.samriddha.weatherforecastapp.data.providers.EpochTimeProvider
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.withContext
 
 class FutureWeatherViewModel(
     private val forecastRepository: ForecastRepository,
@@ -16,7 +18,7 @@ class FutureWeatherViewModel(
     val futureWeather = viewModelScope.async {
 
         val todayDate = EpochTimeProvider.getCurrentEpoch()
-        forecastRepository.getFutureWeatherHourlyList(todayDate,unit)
+        forecastRepository.getFutureWeatherHourlyList(todayDate)
     }
 
 }

@@ -5,8 +5,8 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.core.content.ContextCompat
-import com.samriddha.weatherforecastapp.internal.LocationNotGrantedException
-import com.samriddha.weatherforecastapp.internal.asDeferred
+import com.samriddha.weatherforecastapp.utils.LocationNotGrantedException
+import com.samriddha.weatherforecastapp.utils.asDeferred
 import com.samriddha.weatherforecastapp.data.local.entity.WeatherLocation
 import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.coroutines.Deferred
@@ -102,6 +102,7 @@ class LocationProviderImpl(
         return if (!isUsingDeviceLocation()){
             val customLocationName = getCustomLocationName()?.toLowerCase()
             customLocationName!=lastLocation.name.toLowerCase()
+
         }else false
 
     }
