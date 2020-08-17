@@ -18,7 +18,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.threeten.bp.ZonedDateTime
 
 class ForecastRepositoryImpl(
     private val currentWeatherDao: CurrentWeatherDao,
@@ -85,7 +84,6 @@ class ForecastRepositoryImpl(
             || locationProvider.hasLocationChanged(lastWeatherLocation)
             || unitProvider.hasUnitChanged(unit)){
 
-            Log.e("CallIsMade","Calling from unit changed")
             fetchCurrentWeather(currentUnit)
             fetchFutureWeather(currentUnit)
             return
@@ -124,9 +122,8 @@ class ForecastRepositoryImpl(
     private fun isFetchNeeded(lastFetchTime: Long): Boolean {
 
         //checking if the last fetched time is more than 30 min's
-        //to be updated
         val time = EpochTimeProvider.getTimeMinus(
-            EpochTimeProvider.getCurrentEpoch(),1)
+            EpochTimeProvider.getCurrentEpoch(),5)
 
         return time >= lastFetchTime
 
@@ -140,7 +137,8 @@ class ForecastRepositoryImpl(
 
             val location = fetchedData.location
             location.timeOfFetching = EpochTimeProvider.getCurrentEpoch() // Recording time of fetching before saving to local db.
-
+            location.latitude = locationProvider.getPreferredLocationStringLat()
+            location.longitude = locationProvider.getPreferredLocationStringLong()
             locationCurrentWeatherDao.insert(location)
 
         }

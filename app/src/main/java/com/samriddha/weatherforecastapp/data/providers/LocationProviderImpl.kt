@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
+import android.util.Log
 import androidx.core.content.ContextCompat
 import com.samriddha.weatherforecastapp.utils.LocationNotGrantedException
 import com.samriddha.weatherforecastapp.utils.asDeferred
@@ -39,6 +40,7 @@ class LocationProviderImpl(
             try {
                 val deviceLocation = getLastDeviceLocation().await()
                     ?: return "${getCustomLocationName()}"
+
                 return "${deviceLocation.latitude},${deviceLocation.longitude}"
             }catch (e:LocationNotGrantedException){
                  return "${getCustomLocationName()}"
@@ -79,12 +81,17 @@ class LocationProviderImpl(
         if (!isUsingDeviceLocation())
             return false
 
+
+        if (location.latitude==location.longitude) //Changing from custom location to device location this condition will be true cuz
+            return true                 // lat,long will contain name(ex:Kolkata) instead of coordinates.
+
+
         val deviceLocation = getLastDeviceLocation().await()
             ?:return false
 
         val comparisonThreshold = 0.03
-        return Math.abs(deviceLocation.latitude - location.lat.toDouble()) > comparisonThreshold &&
-                Math.abs(deviceLocation.longitude - location.lon.toDouble()) > comparisonThreshold
+        return Math.abs(deviceLocation.latitude - location.latitude.toDouble()) > comparisonThreshold &&
+                Math.abs(deviceLocation.longitude - location.longitude.toDouble()) > comparisonThreshold
 
     }
 

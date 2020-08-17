@@ -7,21 +7,12 @@ const val WEATHER_LOCATION_P_KEY = 0
 @Entity(tableName = "weather_location")
 data class WeatherLocation(
     val country: String,
-    val lat: String,
-    val localtime: String,
-    @SerializedName("localtime_epoch")
-    val localtimeEpoch: Long,
-    val lon: String,
     val name: String,
-    val region: String,
-    @SerializedName("timezone_id")
-    val timezoneId: String,
-    @SerializedName("utc_offset")
-    val utcOffset: String
+    val region: String
 ){
     @PrimaryKey(autoGenerate = false)
-    var primaryKey:Int =
-        WEATHER_LOCATION_P_KEY
-
+    var primaryKey:Int = WEATHER_LOCATION_P_KEY
     var timeOfFetching:Long = 0 //Field for saving time when data is fetched from api.
+    var latitude:String = "0.00"
+    var longitude:String = "0.00"
 }

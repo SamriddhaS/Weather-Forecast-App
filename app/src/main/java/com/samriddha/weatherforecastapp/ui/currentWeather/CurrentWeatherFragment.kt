@@ -111,7 +111,7 @@ class CurrentWeatherFragment() : Fragment(), KodeinAware {
                 progressBar.visibility = View.GONE
                 groupLoading.visibility = View.VISIBLE
                 updateLocation(it.name,it.region,it.country)
-                updateDate(it.localtimeEpoch)
+                updateDate(EpochTimeProvider.getCurrentEpoch())
             })
 
         }
