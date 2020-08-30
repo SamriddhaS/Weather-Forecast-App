@@ -15,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.samriddha.weatherforecastapp.R
 import com.samriddha.weatherforecastapp.ui.futureWeather.detailsFutureWeather.EPOCH_DATE_PASS_KEY
 import com.samriddha.weatherforecastapp.utils.ApiException
+import com.samriddha.weatherforecastapp.utils.LocationUtility
 import com.samriddha.weatherforecastapp.utils.NoInternetException
 import com.samriddha.weatherforecastapp.utils.toast
 import com.xwray.groupie.GroupAdapter
@@ -49,7 +50,12 @@ class FutureWeatherFragment : Fragment() ,KodeinAware{
         super.onActivityCreated(savedInstanceState)
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(FutureWeatherViewModel::class.java)
-        bindUi()
+
+        if(LocationUtility.hasLocationPermission(requireContext()))
+            bindUi()
+        else
+            Toast.makeText(requireContext(),"Please Goto Current Weather Section & Allow Required Permission",Toast.LENGTH_LONG).show()
+
 
     }
 

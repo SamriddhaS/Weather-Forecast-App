@@ -3,6 +3,7 @@ package com.samriddha.weatherforecastapp
 import android.app.Application
 import android.content.Context
 import androidx.preference.PreferenceManager
+import com.google.android.gms.location.FusedLocationProviderClient
 import com.samriddha.weatherforecastapp.data.local.ForecastDatabase
 import com.samriddha.weatherforecastapp.data.network.*
 import com.samriddha.weatherforecastapp.data.providers.LocationProvider
@@ -36,6 +37,7 @@ class WeatherForecastApplication :Application(),KodeinAware {
         bind() from singleton { OpenWeatherMapApiService(instance()) }
         bind<WeatherNetworkDataSource>() with singleton { WeatherNetworkDataSourceImpl(instance(),instance()) }
         bind() from provider { LocationServices.getFusedLocationProviderClient(instance<Context>()) }
+        //bind() from provider { FusedLocationProviderClient(instance<Context>()) }
         bind<LocationProvider>() with singleton { LocationProviderImpl(instance(),instance()) }
         bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
         bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(),instance(),instance(),instance(),instance(),instance()) }

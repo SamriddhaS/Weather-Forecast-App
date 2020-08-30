@@ -10,6 +10,7 @@ import com.samriddha.weatherforecastapp.utils.LocationNotGrantedException
 import com.samriddha.weatherforecastapp.utils.asDeferred
 import com.samriddha.weatherforecastapp.data.local.entity.WeatherLocation
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.samriddha.weatherforecastapp.utils.LocationUtility
 import kotlinx.coroutines.Deferred
 
 const val USE_DEVICE_LOCATION_KEY = "USE_DEVICE_LOCATION"
@@ -105,7 +106,7 @@ class LocationProviderImpl(
     @SuppressLint("MissingPermission")
     private fun getLastDeviceLocation(): Deferred<Location?> {
 
-        return if (hasLocationPermission())
+        return if (LocationUtility.hasLocationPermission(appContext))
             fusedLocationProviderClient.lastLocation.asDeferred()
         else
             throw LocationNotGrantedException()
@@ -128,13 +129,5 @@ class LocationProviderImpl(
     private fun getCustomLocationName(): String? {
         return preferences.getString(USE_CUSTOM_LOCATION_KEY,null)
     }
-
-    private fun hasLocationPermission():Boolean{
-
-        return ContextCompat.checkSelfPermission(appContext,
-        android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
-
-    }
-
 
 }

@@ -117,4 +117,8 @@ dependencies {
 
     // WeatherLocation
     implementation "com.google.android.gms:play-services-location:17.0.0"
+
+    // Easy Permissions
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
 }
