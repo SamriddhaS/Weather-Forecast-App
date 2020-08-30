@@ -1,9 +1,12 @@
 package com.samriddha.weatherforecastapp.data.local.entity
+import androidx.annotation.Keep
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 const val WEATHER_LOCATION_P_KEY = 0
+
+@Keep
 @Entity(tableName = "weather_location")
 data class WeatherLocation(
     val country: String,

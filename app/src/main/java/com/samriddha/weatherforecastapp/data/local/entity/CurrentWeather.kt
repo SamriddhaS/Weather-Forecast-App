@@ -1,12 +1,14 @@
 package com.samriddha.weatherforecastapp.data.local.entity
 
 
+import androidx.annotation.Keep
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 const val PRIMARY_KEY_ID = 0
 
+@Keep
 @Entity(tableName = "current_weather")
 data class CurrentWeather(
     val feelslike: Double,

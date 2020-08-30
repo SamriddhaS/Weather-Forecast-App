@@ -28,7 +28,7 @@ class WeatherNetworkDataSourceImpl(
 
                 Log.e(
                     "Connection",
-                    "Location Not Available.${fetchCurrentWeather.message()}.${fetchCurrentWeather.errorBody()}"
+                    "Location Not Available.${fetchCurrentWeather.code()}.${fetchCurrentWeather.errorBody()}"
                 )
                 throw ApiException()
 

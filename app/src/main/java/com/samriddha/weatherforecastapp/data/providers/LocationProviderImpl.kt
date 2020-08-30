@@ -29,7 +29,6 @@ class LocationProviderImpl(
             return false
         }
 
-
         return deviceLocationChanged || hasCustomLocationChanged(lastWeatherLocation)
     }
 
@@ -38,16 +37,24 @@ class LocationProviderImpl(
 
         if (isUsingDeviceLocation()){
             try {
+                Log.e("Location:Try","Location:Try Pre")
                 val deviceLocation = getLastDeviceLocation().await()
                     ?: return "${getCustomLocationName()}"
 
+                Log.e("Location:Try","Location:Try Post")
                 return "${deviceLocation.latitude},${deviceLocation.longitude}"
             }catch (e:LocationNotGrantedException){
-                 return "${getCustomLocationName()}"
+
+                Log.e("Location:Catch","Location:Catch")
+                return "${getCustomLocationName()}"
             }
-        }else
+        }else{
+            Log.e("Location:Else","Location:Else")
             return "${getCustomLocationName()}"
+        }
+
     }
+
     override suspend fun getPreferredLocationStringLat(): String {
 
         if (isUsingDeviceLocation()){

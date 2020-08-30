@@ -84,6 +84,7 @@ class ForecastRepositoryImpl(
             || locationProvider.hasLocationChanged(lastWeatherLocation)
             || unitProvider.hasUnitChanged(unit)){
 
+            Log.e("CallIsMade","Calling from unit or location changed")
             fetchCurrentWeather(currentUnit)
             fetchFutureWeather(currentUnit)
             return
@@ -103,6 +104,7 @@ class ForecastRepositoryImpl(
     }
 
     private suspend fun fetchCurrentWeather(currentUnit: String) {
+        Log.e("Location Name",locationProvider.getPreferredLocationString())
         weatherNetworkDataSource.fetchCurrentWeather(locationProvider.getPreferredLocationString(), currentUnit)
     }
 
@@ -123,7 +125,7 @@ class ForecastRepositoryImpl(
 
         //checking if the last fetched time is more than 30 min's
         val time = EpochTimeProvider.getTimeMinus(
-            EpochTimeProvider.getCurrentEpoch(),5)
+            EpochTimeProvider.getCurrentEpoch(),120)
 
         return time >= lastFetchTime
 

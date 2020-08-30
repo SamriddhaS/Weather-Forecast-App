@@ -1,5 +1,6 @@
 package com.samriddha.weatherforecastapp.data.network
 
+import com.samriddha.weatherforecastapp.BuildConfig
 import com.samriddha.weatherforecastapp.pojo.CurrentWeatherResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -11,7 +12,6 @@ import retrofit2.http.Query
 
 const val WEATHER_STACK_BASE_URL = "http://api.weatherstack.com/"
 
-//http://api.weatherstack.com/current?access_key=9414e8821c0135afc3b7bd58d710a40c&query=Kolkata&units=f
 
 interface WeatherStackApiService {
 
@@ -31,7 +31,7 @@ interface WeatherStackApiService {
                     .url()
                     .newBuilder()
                     .addQueryParameter("access_key",
-                        WEATHER_STACK_API_KEY /*use your own api key*/
+                        BuildConfig.WEATHER_STACK_API_KEY /*use your own api key*/
                     )
                     .build()
 
