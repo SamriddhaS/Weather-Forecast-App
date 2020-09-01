@@ -17,10 +17,8 @@ import com.samriddha.weatherforecastapp.ui.futureWeather.detailsFutureWeather.EP
 import com.samriddha.weatherforecastapp.utils.ApiException
 import com.samriddha.weatherforecastapp.utils.LocationUtility
 import com.samriddha.weatherforecastapp.utils.NoInternetException
-import com.samriddha.weatherforecastapp.utils.toast
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.current_weather_fragment.*
 import kotlinx.android.synthetic.main.future_weather_fragment.*
 import kotlinx.android.synthetic.main.future_weather_fragment.groupLoading
 import kotlinx.android.synthetic.main.future_weather_fragment.tvCurrentPlace
