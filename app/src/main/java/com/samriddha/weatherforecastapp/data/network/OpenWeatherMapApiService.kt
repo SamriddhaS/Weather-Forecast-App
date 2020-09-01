@@ -1,6 +1,5 @@
 package com.samriddha.weatherforecastapp.data.network
 
-import com.samriddha.weatherforecastapp.BuildConfig
 import com.samriddha.weatherforecastapp.pojo.FutureWeatherResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -35,7 +34,7 @@ interface OpenWeatherMapApiService {
                     .url()
                     .newBuilder()
                     .addQueryParameter("appid",
-                        BuildConfig.OPEN_WEATHER_API_KEY /*use your own api key*/
+                       OPEN_WEATHER_API_KEY /*use your own api key*/
                     )
                     .build()
 

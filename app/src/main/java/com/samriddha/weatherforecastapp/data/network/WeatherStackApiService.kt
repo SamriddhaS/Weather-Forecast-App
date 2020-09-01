@@ -1,6 +1,5 @@
 package com.samriddha.weatherforecastapp.data.network
 
-import com.samriddha.weatherforecastapp.BuildConfig
 import com.samriddha.weatherforecastapp.pojo.CurrentWeatherResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -31,7 +30,7 @@ interface WeatherStackApiService {
                     .url()
                     .newBuilder()
                     .addQueryParameter("access_key",
-                        BuildConfig.WEATHER_STACK_API_KEY /*use your own api key*/
+                        WEATHER_STACK_API_KEY /*use your own api key*/
                     )
                     .build()
 

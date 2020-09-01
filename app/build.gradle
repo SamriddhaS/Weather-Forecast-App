@@ -23,11 +23,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
-    buildTypes.each {
-        it.buildConfigField 'String', 'WEATHER_STACK_API_KEY', '"9414e8821c0135afc3b7bd58d710a40c"'
-        it.buildConfigField 'String', 'OPEN_WEATHER_API_KEY', '"a4680def7e63766deb0ce3db92a76191"'
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
